@@ -2,29 +2,29 @@
 
 # User Story #1
 
-## API
-- As an User
-- Want to be able to access to back end throw the API
-- For acces to data program
+## Create an API (Application Programmer Interface)
+
+- As a front-end developer
+- Want to be able to access the back-end of the system through an API
+- For access to data program
 
 ## SAMPLE TASKS FOR REFERENCE
 
-### TASK a) Create a minimal API that can answer a request
-ASSIGNEE: Esteban
-DESCRIPTION: 
+### TASK a) Create a minimal API that can answer answer a dummy request
+ASSIGNEE: Esteban 
 
 ### TASK b) Improve the API with the various operations required by the program
-DESCRIPTION:
-ASSIGNEE: 
+DESCRIPTION: TBD
+ASSIGNEE:  TBD
 
 
 # User Story #2
 
-## API Access Control
+## Add API Access Control
 
-- As an Admin
-- Want to be able to control how can access to the APi
-- For control how can be ban or not
+- As an admin
+- Want to be able to control who can access the API
+- For limiting improper usage (prevent spam to API) and ensuring that source IP is as expected
 
 # User Story #3
 
@@ -39,7 +39,7 @@ ASSIGNEE:
 ## User Data Access as Administrator
 
 - As an adminitrator
-- Want to be able to do CRUD operations on all user data for all users
+- Want to be able to do CRUD (Create, Read, Update, Delete) operations on all user data for all users
 - For user administration needs
 
 # User Story #5
@@ -73,3 +73,27 @@ ASSIGNEE:
 - As a developer of this project
 - I want to be able to document all project design decisions, best practices, work tracking, etc
 - For making it easier to understand the project and remember important details later
+
+# User Story #8
+
+## UI/UX Designer Integration
+
+- As a UI developer of this project
+- I want to receive and follow the specification of some UI/UX design provided by the UI/UX designer of the project, Geraldine (ggm.100423@gmail.com). I assume this UI/UX design will be some sort of figma wireframe or something similar but the specifics are left to the designer, them being the expert in this area.
+- For making our UI implementation process much easier (existing design makes it so much easier) and reducing the amount of refinement and rework (starting with a UI/UX designer's full design is much better than starting with a programmer's vague idea)
+
+# User Story #9
+
+## Web Interface Implementation Integration
+
+- As a UI developer of this project
+- I want to create a web interface front-end for the project using the UI/UX designer's design as a plan. I want to use html/css/javascript to create the actual UI.
+- For improving the user experience compared to the minimal command-line interface which already exists
+
+# User Story #10
+
+## UI/UX Design Creation
+
+- As a UI/UX designer of this project
+- I want to create a UI/UX design for this project. I will need a source of specifications for the services the project is supposed to provide. 
+- For creating a clear plan for the UI implementation team
