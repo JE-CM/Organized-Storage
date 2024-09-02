@@ -74,6 +74,11 @@ ASSIGNEE:  TBD
 - I want to be able to document all project design decisions, best practices, work tracking, etc
 - For making it easier to understand the project and remember important details later
 
+ASSIGNEE: matthew-silva
+ASSIGNEE: JE-CM
+
+NOTE: This story will probably stay open for some weeks as we document the design of the project, and then close once we start documenting the individual subsystems of the project (we will create tickets for each subsystem or complete the documentation during the subsystem implementation tickets).
+
 # User Story #8
 
 ## UI/UX Designer Integration
