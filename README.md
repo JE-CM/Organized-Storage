@@ -5,6 +5,12 @@
 Create software which will manage user data for a cooperative self-storage facility.<br>
 The project involves developing a comprehensive application featuring both a front end and back end to offer a streamlined self-storage management service. This application will support functionalities for storing and managing user data and packages in designated storage units. It will incorporate DevOps practices to handle aspects such as (automated deployment, continuous integration/continuous deployment (CI/CD) pipelines, and container orchestration), leverage data science techniques to (predict storage capacity utilization and demand for various facility responsibilities), and ensure basic security measures to (protect user data and maintain secure access control).
 
+## Best Practices
+
+### Reuse
+
+The purpose of this program is quite specific: Creating a system which can manage the user data of a cooperative self-storage facility. However, the actual functionality will probably be quite useful for many different purposes. For this reason, we should put effort into making the basic functionality of the program quite reusable. The best way to do this will be to try our best to completely separate the business logic from the basic functionality. Often this can be achieved through modular design and using first-class functions.
+
 ## Design
 
 ### Front End
