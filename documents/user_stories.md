@@ -102,3 +102,14 @@ NOTE: This story will probably stay open for some weeks as we document the desig
 - As a UI/UX designer of this project
 - I want to create a UI/UX design for this project. I will need a source of specifications for the services the project is supposed to provide. 
 - For creating a clear plan for the UI implementation team
+
+# User Story #11
+
+## Create a skeleton for the backend
+
+- As a developer
+- I want a basic piece of python code that I can extend with all other functionality
+- For making it easy to start working on the backend
+
+ASSIGNEE: matthew-silva
+
