@@ -113,3 +113,12 @@ NOTE: This story will probably stay open for some weeks as we document the desig
 
 ASSIGNEE: matthew-silva
 
+# User Story #12
+
+## Authentication System
+
+- As a user
+- I want to have my passwords securely stored and checked when entering them
+- For data security reasons
+
+Assignee: matthew-silva

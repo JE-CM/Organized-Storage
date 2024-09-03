@@ -19,7 +19,7 @@ ASSIGNEE: matthew-silva (Matthew)
 
 ## Major Component #4
 
-1. public key authentication within the backend, written in python
+1. secure authentication within the backend, written in python
 
 ASSIGNEE: matthew-silva (Matthew)
 
