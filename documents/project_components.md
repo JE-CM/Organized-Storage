@@ -27,6 +27,8 @@ ASSIGNEE: matthew-silva (Matthew)
 
 1. Database to hold all program persistent data
 
+ASSIGNEE: matthew-silva (Matthew) but looking for further assistance
+
 # Future Program Components
 
 ## Future Component #1
