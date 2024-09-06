@@ -1,3 +1,8 @@
 # Python pip packages
 
+user_story_12_create_basic_functions_for_authentication_system
 black
+bcrypt
+=======
+black
+main
