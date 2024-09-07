@@ -122,3 +122,13 @@ ASSIGNEE: matthew-silva
 - For data security reasons
 
 Assignee: matthew-silva
+
+# User Story #13
+
+## Create Basic Database
+
+- As a developer
+- I want a basic database of some kind which can store system and user data
+- For the basic operation of the program, such as providing user login, user data display, system data display
+
+ASSIGNEE: matthew-silva

@@ -1,1 +1,6 @@
+_<<<<<<< USER_STORY_13_Create_Basic_Database
+__pycache__
+unittest.db
+=======
 __pycache__/
+_>>>>>>> main
