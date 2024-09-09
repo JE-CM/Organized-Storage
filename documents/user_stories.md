@@ -132,3 +132,38 @@ Assignee: matthew-silva
 - For the basic operation of the program, such as providing user login, user data display, system data display
 
 ASSIGNEE: matthew-silva
+
+# User Story #14
+
+## Create Database Functions Specific to Organized Storage User Management
+
+- As a backend developer
+- I need user add / delete / edit functions to be able to easily interface with the database without knowing anything about SQL
+- For doing backend work without SQL knowledge
+- Notes: Add user add/delete/edit functions and any others which are relevant to the effort
+
+ASSIGNEE: matthew-silva
+
+# User Story #15
+
+## Add Database Table for facility info
+
+- TODO
+
+# User Story #16
+
+## Add Database Table for admin users
+
+- TODO
+
+# User Story #17
+
+## Create Database Functions Specific to Organized Storage Facility Data Management
+
+- TODO
+
+# User Story #18
+
+## Create Database Functions Specific to Organized Storage Admin User Management
+
+- TODO
