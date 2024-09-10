@@ -51,13 +51,27 @@ class OrganizedStorageDatabase(SqliteDatabase):
         insert_query = f"INSERT INTO {self.user_table_name} ({', '.join(user_dict_keys)}) VALUES ({', '.join(user_dict_values_with_quotes_where_needed)})"
         return self.execute_query(insert_query)
 
+    def remove_user(self, key_to_search, value_to_remove):
+        assert(key_to_search in self.organized_storage_table_columns.keys())
+        value_quoted_if_needed = self.quote_value_if_needed(value_to_remove)
+        if ("primary" in self.organized_storage_table_columns[key_to_search] and not self.organized_storage_table_columns[key_to_search]["primary"]) or \
+                "primary" not in self.organized_storage_table_columns[key_to_search]["primary"]:
+            search_results = self.user_search(key_to_search, value_to_remove)
+            assert(len(search_results) == 1)
+        remove_query = f"DELETE FROM {self.user_table_name} WHERE {key_to_search} = {value_quoted_if_needed};"
+        return self.execute_query(remove_query)
+
+    # TODO: Add update_user
+    # def update_user(self, key_to_search, user_dict_to_update):
+    #     "UPDATE users SET email = 'newemail@example.com', age = 25 WHERE id = 1;"
+
     def quote_value_if_needed(self, key, value):
         search_value_needs_quotes = sqlite_type_is_quoted(self.organized_storage_table_columns[key]['type'])
         search_value_sql = f"'{value}'" if search_value_needs_quotes else f"{value}"
         return search_value_sql
 
     # Search for all users with a matching value in the specified key (column)
-    def user_search(self, user_data_key, user_data_value, matches_exactly="False"):
+    def user_search(self, user_data_key, user_data_value, matches_exactly=False):
         assert(user_data_key in self.organized_storage_table_columns.keys())
         user_data_key_type = self.organized_storage_table_columns[user_data_key]['type']
         if not matches_exactly:
@@ -78,9 +92,18 @@ def unittest_add_user(unittest_db, test_user):
     unittest_db.add_user(test_user)
 
 def unittest_user_search(unittest_db, test_user):
-    unittest_db.user_search(test_user)
-    # TODO: Add assert on return value
-    assert(True)
+    key_to_search = "name"
+    results = unittest_db.user_search(key_to_search, test_user[key_to_search])
+    assert(len(results) == 1)
+    assert(results[0][key_to_search] == test_user[key_to_search])
+
+def unittest_remove_user(unittest_db, test_user):
+    key_to_search = "name"
+    unittest_db.remove_user(key_to_search, test_user[key_to_search])
+
+def unittest_user_search_on_removed_user(unittest_db, test_user):
+    results = unittest_db.user_search(test_user)
+    assert(len(results) == 0)
 
 def unittests():
     unittest_db = create_OrganizedStorage()
@@ -93,6 +116,10 @@ def unittests():
     }
     unittest_add_user(unittest_db, test_user)
     unittest_user_search(unittest_db, test_user)
+    unittest_update_user(unittest_db, test_user)
+    unittest_remove_user(unittest_db, test_user)
+    unittest_user_search_on_removed_user(unittest_db, test_user)
+    
 
 def main():
     unittests()
