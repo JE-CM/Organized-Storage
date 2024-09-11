@@ -46,8 +46,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         assert(self.organized_storage_table_columns.keys() ==
                user_dict.keys())
         user_dict_keys = [key for key in user_dict]
-        user_dict_values = [user_dict[key] for key in user_dict]
-        user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(value) for value in user_dict_values]
+        user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict[key]) for key in user_dict]        
         insert_query = f"INSERT INTO {self.user_table_name} ({', '.join(user_dict_keys)}) VALUES ({', '.join(user_dict_values_with_quotes_where_needed)})"
         return self.execute_query(insert_query)
 
@@ -61,9 +60,17 @@ class OrganizedStorageDatabase(SqliteDatabase):
         remove_query = f"DELETE FROM {self.user_table_name} WHERE {key_to_search} = {value_quoted_if_needed};"
         return self.execute_query(remove_query)
 
-    # TODO: Add update_user
-    # def update_user(self, key_to_search, user_dict_to_update):
-    #     "UPDATE users SET email = 'newemail@example.com', age = 25 WHERE id = 1;"
+    def update_user(self, user_dict_to_update):
+        # assert(self.organized_storage_table_columns.keys() ==
+        #        user_dict.keys())
+        primary_key_name = self.organized_storage_table_columns.keys
+        user_id = user_dict_to_update['id']
+        del user_dict_to_update['id']
+        user_dict_keys = [key for key in user_dict_to_update]
+        user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict_to_update[key]) for key in user_dict_to_update]        
+        zipped_keys_and_values = ', '.join([f"{key} = {value}" for key, value in zip(user_dict_keys, user_dict_values_with_quotes_where_needed)])
+        update_query = f"UPDATE {self.user_table_name} SET {zipped_keys_and_values} WHERE id = {user_id})"
+        return self.execute_query(update_query)
 
     def quote_value_if_needed(self, key, value):
         search_value_needs_quotes = sqlite_type_is_quoted(self.organized_storage_table_columns[key]['type'])
@@ -105,6 +112,9 @@ def unittest_user_search_on_removed_user(unittest_db, test_user):
     results = unittest_db.user_search(test_user)
     assert(len(results) == 0)
 
+def unittest_update_user(unittest_db, test_user_update):
+    unittest_db.update_user(test_user_update)
+
 def unittests():
     unittest_db = create_OrganizedStorage()
     test_user = {
@@ -116,7 +126,9 @@ def unittests():
     }
     unittest_add_user(unittest_db, test_user)
     unittest_user_search(unittest_db, test_user)
+    test_user['name'] = "Alex"
     unittest_update_user(unittest_db, test_user)
+    unittest_user_search(unittest_db, test_user)
     unittest_remove_user(unittest_db, test_user)
     unittest_user_search_on_removed_user(unittest_db, test_user)
     
