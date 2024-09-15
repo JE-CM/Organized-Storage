@@ -132,3 +132,11 @@ Assignee: matthew-silva
 - For the basic operation of the program, such as providing user login, user data display, system data display
 
 ASSIGNEE: matthew-silva
+
+# USER STORY #19
+
+- As a developer
+- I want to to have user stories defined which follow the design of "Phase 1" of the product design document provided by Geraldine (ggm.100423@gmail.com), the project UI/UX designer.
+- So that my development efforts are well-guided for creating a proper user experience that supports the product vision 
+
+ASSIGNEE: matthew-silva
