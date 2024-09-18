@@ -64,19 +64,14 @@ class OrganizedStorageDatabase(SqliteDatabase):
     def remove_user(self, key_to_search, value_to_remove):
         assert(key_to_search in self.organized_storage_table_columns.keys())
         primary_key = self.get_primary_key()
-        primary_key_column_number = self.get_primary_key_column_number()
         value_quoted_if_needed = self.quote_value_if_needed(key_to_search,value_to_remove)
         if ("primary" in self.organized_storage_table_columns[key_to_search] and not self.organized_storage_table_columns[key_to_search]["primary"]) or \
                 "primary" not in self.organized_storage_table_columns[key_to_search]:
             results = self.user_search(key_to_search, value_to_remove)
             assert(len(results) == 1)
-            print(f"results == {results}")
-            user_id = results[0][primary_key_column_number]
+            user_id = results[0][primary_key]
         remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
-        print(f"value_to_remove == {value_to_remove}")
-        print(f"remove_query == {remove_query}")
         _, query_rowid = self.execute_query(remove_query)
-        print(f"query_rowid == {query_rowid}")
         user_removed = True if query_rowid else False
         return user_removed, query_rowid
 
@@ -121,10 +116,14 @@ class OrganizedStorageDatabase(SqliteDatabase):
         #     assert(user_data_key_type == "TEXT")
         #     user_data_value = f"%{user_data_value}%"
         search_query = f"SELECT * FROM {self.user_table_name} WHERE {user_data_key} = {self.quote_value_if_needed(user_data_key, user_data_value)};"
-        print(f"search_query == {search_query}")
         # TODO: Clean up SQL return value for search
-        search_result, _ = self.execute_query(search_query)
-        return search_result
+        search_results, _ = self.execute_query(search_query)
+        table_column_names = self.organized_storage_table_columns.keys()
+        search_results_as_dicts = []
+        for result in search_results:
+            search_results_as_dict = dict(zip(table_column_names, result))
+            search_results_as_dicts.append(search_results_as_dict)
+        return search_results_as_dicts
 
 def sqlite_type_is_quoted(sqlite_type):
     return sqlite_type not in ['INTEGER', 'NUMERIC', 'REAL']
