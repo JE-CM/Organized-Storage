@@ -15,6 +15,7 @@ class SqliteDatabase():
         connection = sqlite3.connect(self.db_path)
         query_executed = False
         query_result = None
+        query_rowid = None
         try:
             # Create a cursor object
             cursor = connection.cursor()
@@ -27,10 +28,13 @@ class SqliteDatabase():
             
             # Retrieve the results
             query_result = cursor.fetchall()
+            query_rowid = cursor.lastrowid
+        except:
+            print(f"ERROR: Query was'{query}'")
         finally:
             connection.close()
 
-        return query_result
+        return query_result, query_rowid
     
     def delete_db(self):
         if os.path.exists(self.db_path):
@@ -66,21 +70,22 @@ def unittest_add_user(my_db):
 
 def unittest_query_db(my_db):
     rows = my_db.execute_query('SELECT * FROM users')
-    print(rows)
+    return rows
 
-def unittests():
-    test_failed = False
-    try:
-        my_db = unittest_create_db()
-        unittest_create_table(my_db)
-        unittest_add_user(my_db)
-        unittest_query_db(my_db)
-    except:
-        test_failed = True
-    finally:
-        my_db.delete_db()
+# def unittests():
+#     print("Started unittests in db.py")
+#     test_failed = False
+#     try:
+#         my_db = unittest_create_db()
+#         unittest_create_table(my_db)
+#         unittest_add_user(my_db)
+#         unittest_query_db(my_db)
+#     except:
+#         test_failed = True
+#     finally:
+#         my_db.delete_db()
 
-def main():
-    unittests()
+# def main():
+#     unittests()
 
-main()
+# main()

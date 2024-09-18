@@ -133,6 +133,41 @@ Assignee: matthew-silva
 
 ASSIGNEE: matthew-silva
 
+# User Story #14
+
+## Create Database Functions Specific to Organized Storage User Management
+
+- As a backend developer
+- I need user add / delete / edit functions to be able to easily interface with the database without knowing anything about SQL
+- For doing backend work without SQL knowledge
+- Notes: Add user add/delete/edit functions and any others which are relevant to the effort
+
+ASSIGNEE: matthew-silva
+
+# User Story #15
+
+## Add Database Table for facility info
+
+- TODO
+
+# User Story #16
+
+## Add Database Table for admin users
+
+- TODO
+
+# User Story #17
+
+## Create Database Functions Specific to Organized Storage Facility Data Management
+
+- TODO
+
+# User Story #18
+
+## Create Database Functions Specific to Organized Storage Admin User Management
+
+- TODO
+
 # USER STORY #19
 
 - As a developer
@@ -187,4 +222,22 @@ ASSIGNEE: matthew-silva
     - Show video feed of communal area (TODO)
     
 - To simplify development and create a place for pure business logic
+
+# USER STORY 25
+
+## Convert the result of the user_search function to a dictionary with the column names as the keys
+
+- As a developer
+- It would be convenient to have the user_search function return a dictionary rather than a list of columns
+- For making it easier to interpret and process the results
+- NOTE: Let's keep the original functionality available and toggle with a parameter called return_dict=True 
+
+# USER STORY 26
+
+## Clean up OrganizedStorageDatabase function return values
+
+- As a developer
+- I want the OrganizedStorageDatabase functions, such as add_user, user_search, and remove_user to have useful and consistent return values
+- To increase their utility during development
+- NOTE: Clean up the return values for each OrganizedStorageDatabase function by having the execute_query function return a dictionary of every possible return value from the cursor, which consuming functions can use as they need. Currently our execute_query function only returns very limited info.
 
