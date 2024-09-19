@@ -35,11 +35,8 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
         self.test_db.add_user(self.test_user)
         results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
         self.assertEqual(len(results), 1)
-        primary_key_column_number = self.test_db.get_primary_key_column_number()
-        self.assertEqual(results[0][primary_key_column_number], 1)
-        # TODO: Need to convert user_search to convert tuple results to dictionaries instead
-        # self.assertEqual(results[0][key_to_search], self.test_user[key_to_search])
-        
+        self.assertEqual(results[0]['id'], 1)
+        self.assertEqual(results[0][key_to_search], self.test_user[key_to_search])
 
     def test_remove_user(self):
         self.test_db.add_user(self.test_user)
