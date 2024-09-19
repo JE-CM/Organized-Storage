@@ -43,10 +43,8 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
         key_to_search = "name"
         results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
         self.assertEqual(len(results), 1)
-        # TODO: remove_user does not return anything meaningful yet because the SqliteDatabase.execute_query
-        #       function does not return anything that a DELETE query would use for output, such as cursor.rowcount
-        #       . We should convert SqliteDatabase.execute_query to return a dict with all possible values
-        _, _ = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(removed_user, True)
         after_remove_results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
         self.assertEqual(len(after_remove_results), 0)
 
@@ -57,7 +55,8 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
 
     def test_update_user_by_id(self):
         _, id = self.test_db.add_user(self.test_user)
-        update_result, id = self.test_db.update_user_by_id(id, self.test_user_edited)
+        update_result = self.test_db.update_user_by_id(id, self.test_user_edited)
+        self.assertEqual(update_result, True)
         key_to_search = "name"
         results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
         self.assertEqual(len(results), 0)

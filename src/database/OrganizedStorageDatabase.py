@@ -57,9 +57,11 @@ class OrganizedStorageDatabase(SqliteDatabase):
         user_dict_keys = [key for key in user_dict]
         user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict[key]) for key in user_dict]        
         insert_query = f"INSERT INTO {self.user_table_name} ({', '.join(user_dict_keys)}) VALUES ({', '.join(user_dict_values_with_quotes_where_needed)})"
-        _, query_rowid = self.execute_query(insert_query)
-        user_added = True if query_rowid else False
-        return user_added, query_rowid
+        query_results = self.execute_query(insert_query)
+        query_rows_added = query_results['rowcount']
+        row_of_user_add = query_results['lastrowid']
+        user_added = True if query_rows_added == 1 else False
+        return user_added, row_of_user_add 
 
     def remove_user(self, key_to_search, value_to_remove):
         assert(key_to_search in self.organized_storage_table_columns.keys())
@@ -71,9 +73,11 @@ class OrganizedStorageDatabase(SqliteDatabase):
             assert(len(results) == 1)
             user_id = results[0][primary_key]
         remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
-        _, query_rowid = self.execute_query(remove_query)
-        user_removed = True if query_rowid else False
-        return user_removed, query_rowid
+        query_results = self.execute_query(remove_query)
+        num_rows_removed = query_results['rowcount']
+        assert(not num_rows_removed > 1)
+        user_removed = True if num_rows_removed == 1 else False
+        return user_removed
 
     def get_primary_key_column_number(self):
         primary_key = self.get_primary_key()
@@ -97,9 +101,11 @@ class OrganizedStorageDatabase(SqliteDatabase):
         user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict_to_update[key]) for key in user_dict_to_update]        
         zipped_keys_and_values = ', '.join([f"{key} = {value}" for key, value in zip(user_dict_keys, user_dict_values_with_quotes_where_needed)])
         update_query = f"UPDATE {self.user_table_name} SET {zipped_keys_and_values} WHERE {self.get_primary_key()} = {user_id}"
-        _, query_rowid = self.execute_query(update_query)
-        user_updated = True if query_rowid else False
-        return user_updated, query_rowid
+        query_results = self.execute_query(update_query)
+        num_users_updated = query_results['rowcount']
+        assert(not num_users_updated > 1)
+        user_updated = True if num_users_updated == 1 else False
+        return user_updated
 
 
     def quote_value_if_needed(self, key, value):
@@ -116,8 +122,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         #     assert(user_data_key_type == "TEXT")
         #     user_data_value = f"%{user_data_value}%"
         search_query = f"SELECT * FROM {self.user_table_name} WHERE {user_data_key} = {self.quote_value_if_needed(user_data_key, user_data_value)};"
-        # TODO: Clean up SQL return value for search
-        search_results, _ = self.execute_query(search_query)
+        search_results = self.execute_query(search_query)['fetchall']
         table_column_names = self.organized_storage_table_columns.keys()
         search_results_as_dicts = []
         for result in search_results:
