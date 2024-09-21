@@ -176,33 +176,43 @@ ASSIGNEE: matthew-silva
 
 ASSIGNEE: matthew-silva
 
-# USER STORY #20
+# USER STORY 20
+
+## Support user-side database operations of self-storage unit modality
 
 - As a front-end developer
 - I want an OrganizedStorageDatabase object which supports the user-side of the self-storage units modality of the Organized Storage project. The user operations of the self-storage modality require basic customer data as well as a reference to the storage unit(s) being used by the customer and the price the customer pays for those units.
 - So that I can easily access this info for front-end development without knowing anything about the database
 
-# USER STORY #21
+# USER STORY 21
+
+## Support unit-side database operations of self-storage unit modality
 
 - As a front-end developer
 - I want an OrganizedStorageDatabase object which supports the unit-side of the self-storage units modality of the Organized Storage project. The unit-side operations of the self-storage modality require a unit ID, list of authorized user IDs, location, size, status of temperature regulation, status of vehicular access for each unit.
 - NOTE: Potentially make this class have an instances of OrganizedStorageDatabase instead of inheriting from OrganizedStorageDatabase so that this class can have add_unit instead of add_user method
 - So that I can easily access this info for front-end development without knowing anything about the database
 
-# USER STORY #22
+# USER STORY 22
+
+## Support user-side database operations of communal storage unit modality
 
 - As a front-end developer
 - I want an adapted OrganizedStorageDatabase object which supports the user-side operations of the communal storage units modality of the Organized Storage project. The user operations of the communal-storage modality require basic customer data as well as a list of the items being stored by the customer (item ID).
 - So that I can easily access this info for front-end development without knowing anything about the database
 
-# USER STORY #23
+# USER STORY 23
+
+## Support item-side database operations of communal storage unit modality
 
 - As a front-end developer
 - I want an adapted OrganizedStorageDatabase object which supports the item-side operations of the communal storage units modality of the Organized Storage project. The item operations of the self-storage modality require an item ID, list of authorized user IDs, basic description, optional longer description, one or more photographs, and a size category for each item.
 - NOTE: Potentially make this class have an instances of OrganizedStorageDatabase instead of inheriting from OrganizedStorageDatabase so that this class can have add_item instead of add_user method
 - So that I can easily access this info for front-end development without knowing anything about the database
 
-# USER STORY #24
+# USER STORY 24
+
+## Create OrganizedStorage class for central organization of all backend objects
 
 - As a front-end developer
 - I want a simplified OrganizedStorage object which will contain all of the objects necessary for the Organized Storage backend, such as all the databases. This object should have functions for common business operations like:
@@ -222,6 +232,8 @@ ASSIGNEE: matthew-silva
     - Show video feed of communal area (TODO)
     
 - To simplify development and create a place for pure business logic
+
+ASSIGNEE: matthew-silva
 
 # USER STORY 25
 
