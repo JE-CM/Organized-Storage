@@ -232,6 +232,8 @@ ASSIGNEE: matthew-silva
 - For making it easier to interpret and process the results
 - NOTE: Let's keep the original functionality available and toggle with a parameter called return_dict=True 
 
+ASSIGNEE: matthew-silva
+
 # USER STORY 26
 
 ## Clean up OrganizedStorageDatabase function return values
@@ -241,3 +243,20 @@ ASSIGNEE: matthew-silva
 - To increase their utility during development
 - NOTE: Clean up the return values for each OrganizedStorageDatabase function by having the execute_query function return a dictionary of every possible return value from the cursor, which consuming functions can use as they need. Currently our execute_query function only returns very limited info.
 
+ASSIGNEE: matthew-silva
+
+# USER STORY 27
+
+## Add corner cases to OrganizedStorageDatabase testing
+
+- As a developer
+- I want the OrganizedStorageDatabase to behave appropriately in common corner cases like trying to remove a user that does not exist (throw exception), trying to update a user that does not exist (throw exception), trying to search a user that does not exist (return nothing), etc.
+- For giving the class more stability which will make it suitable for indirect consumption by the frontend
+
+# USER STORY 28
+
+## Add unit tests for db.py compatible with unittest module
+
+- As a developer
+- I want to have consistent and easy to use unit tests in the db.py file similar to what we already have for the OrganizedStorageDatabase_unittest.py
+- For increasing test coverage and consistency

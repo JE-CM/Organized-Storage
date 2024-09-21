@@ -27,14 +27,18 @@ class SqliteDatabase():
             connection.commit()
             
             # Retrieve the results
-            query_result = cursor.fetchall()
-            query_rowid = cursor.lastrowid
+            query_results = dict()
+            query_results['rowcount'] = cursor.rowcount
+            query_results['lastrowid'] = cursor.lastrowid
+            query_results['description'] = cursor.description
+            query_results['fetchall'] = cursor.fetchall()
+            query_results['fetchone'] = cursor.fetchone()
         except:
             print(f"ERROR: Query was'{query}'")
         finally:
             connection.close()
 
-        return query_result, query_rowid
+        return query_results
     
     def delete_db(self):
         if os.path.exists(self.db_path):
