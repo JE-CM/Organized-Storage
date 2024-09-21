@@ -11,12 +11,13 @@
 ## SAMPLE TASKS FOR REFERENCE
 
 ### TASK a) Create a minimal API that can answer answer a dummy request
-ASSIGNEE: Esteban 
+
+ASSIGNEE: Esteban
 
 ### TASK b) Improve the API with the various operations required by the program
-DESCRIPTION: TBD
-ASSIGNEE:  TBD
 
+DESCRIPTION: TBD
+ASSIGNEE: TBD
 
 # User Story #2
 
@@ -100,7 +101,7 @@ NOTE: This story will probably stay open for some weeks as we document the desig
 ## UI/UX Design Creation
 
 - As a UI/UX designer of this project
-- I want to create a UI/UX design for this project. I will need a source of specifications for the services the project is supposed to provide. 
+- I want to create a UI/UX design for this project. I will need a source of specifications for the services the project is supposed to provide.
 - For creating a clear plan for the UI implementation team
 
 # User Story #11
@@ -172,7 +173,7 @@ ASSIGNEE: matthew-silva
 
 - As a developer
 - I want to to have user stories defined which follow the design of "Phase 1" of the product design document provided by Geraldine (ggm.100423@gmail.com), the project UI/UX designer.
-- So that my development efforts are well-guided for creating a proper user experience that supports the product vision 
+- So that my development efforts are well-guided for creating a proper user experience that supports the product vision
 
 ASSIGNEE: matthew-silva
 
@@ -216,21 +217,20 @@ ASSIGNEE: matthew-silva
 
 - As a front-end developer
 - I want a simplified OrganizedStorage object which will contain all of the objects necessary for the Organized Storage backend, such as all the databases. This object should have functions for common business operations like:
-    - add user to self-storage
-    - Add user to authorized list for self-storage unit
-    - add self-storage unit
-    - Check for if user is authorized to access self-storage unit
-    - Notify authorized users on access to self-storage unit
-    - Show all authorized users on unit
-    - Show all units which can be accessed by user
-    - Show unit charactertics (size, temperature controlled, vehicular access)
-    - add user to communal-storage
-    - Add user to authorized list for communal-storage item
-    - Add communal-storage item
-    - Check for if user is authorized to pickup communal-storage item
-    - Show list of items owned by user
-    - Show video feed of communal area (TODO)
-    
+  - add user to self-storage
+  - Add user to authorized list for self-storage unit
+  - add self-storage unit
+  - Check for if user is authorized to access self-storage unit
+  - Notify authorized users on access to self-storage unit
+  - Show all authorized users on unit
+  - Show all units which can be accessed by user
+  - Show unit charactertics (size, temperature controlled, vehicular access)
+  - add user to communal-storage
+  - Add user to authorized list for communal-storage item
+  - Add communal-storage item
+  - Check for if user is authorized to pickup communal-storage item
+  - Show list of items owned by user
+  - Show video feed of communal area (TODO)
 - To simplify development and create a place for pure business logic
 
 ASSIGNEE: matthew-silva
@@ -242,7 +242,7 @@ ASSIGNEE: matthew-silva
 - As a developer
 - It would be convenient to have the user_search function return a dictionary rather than a list of columns
 - For making it easier to interpret and process the results
-- NOTE: Let's keep the original functionality available and toggle with a parameter called return_dict=True 
+- NOTE: Let's keep the original functionality available and toggle with a parameter called return_dict=True
 
 ASSIGNEE: matthew-silva
 
@@ -264,6 +264,8 @@ ASSIGNEE: matthew-silva
 - As a developer
 - I want the OrganizedStorageDatabase to behave appropriately in common corner cases like trying to remove a user that does not exist (throw exception), trying to update a user that does not exist (throw exception), trying to search a user that does not exist (return nothing), etc.
 - For giving the class more stability which will make it suitable for indirect consumption by the frontend
+
+ASSIGNEE: JE-CM
 
 # USER STORY 28
 

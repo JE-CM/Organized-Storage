@@ -63,6 +63,38 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
         key_to_search = "name"
         results = self.test_db.user_search(key_to_search, self.test_user_edited[key_to_search])
         self.assertEqual(len(results), 1)
+
+    def test_search_user_not_exist(self):
+        key_to_search = "name"
+        results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(len(results), 0)
+
+    def test_update_user_not_exist(self):
+        _, id = self.test_db.add_user(self.test_user)
+        key_to_search = "name"
+        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(removed_user, True)
+        update_result = self.test_db.update_user_by_id(id, self.test_user_edited)
+        self.assertEqual(update_result, False)
+        key_to_search = "name"
+        results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(len(results), 0)
+        key_to_search = "name"
+        results = self.test_db.user_search(key_to_search, self.test_user_edited[key_to_search])
+        self.assertEqual(len(results), 0)
+
+    def test_remove_user_not_exist(self):
+        self.test_db.add_user(self.test_user)
+        key_to_search = "name"
+        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(removed_user, True)
+        key_to_search = "name"
+        results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(len(results), 0)
+        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(removed_user, False)
+        after_remove_results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(len(after_remove_results), 0)
         
 if __name__ == "__main__":
     unittest.main()
