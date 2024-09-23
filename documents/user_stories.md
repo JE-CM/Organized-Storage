@@ -272,3 +272,25 @@ ASSIGNEE: matthew-silva
 - As a developer
 - I want to have consistent and easy to use unit tests in the db.py file similar to what we already have for the OrganizedStorageDatabase_unittest.py
 - For increasing test coverage and consistency
+
+USER STORY XYZ
+
+- As a customer
+- I want confirmation from both sides (myself and the storage facility) that we understand what item is being added to the communal storage unit
+- FOr the purpose of not being confused about the item/value/etc
+
+- Separate user story: Additionally, for items added without customer present, we should send a notification with full details (with  confirmation on push notification that the package is truly intended for the customer, with option to raise issues such as misdelivery)
+
+NOTE: Front-end double confirmation task for customer UI and business side UI
+
+
+Safety and cost indeed are the two top priorities
+
+USER STORY XYZ 
+
+Cost estimate ideas
+
+- As a user
+- I should be able to navigate to the website, See prices of different products (associated with unit dimensions, photos of units, same also for communal space)
+- If they want to use the common space, should be able to quote approximate price depending on item size, etc (pre-purchase step before the user might even have the item)
+
