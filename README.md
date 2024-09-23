@@ -5,6 +5,13 @@
 Create software which will manage user data for a cooperative self-storage facility.<br>
 The project involves developing a comprehensive application featuring both a front end and back end to offer a streamlined self-storage management service. This application will support functionalities for storing and managing user data and packages in designated storage units. It will incorporate DevOps practices to handle aspects such as (automated deployment, continuous integration/continuous deployment (CI/CD) pipelines, and container orchestration), leverage data science techniques to (predict storage capacity utilization and demand for various facility responsibilities), and ensure basic security measures to (protect user data and maintain secure access control).
 
+## Business Proposal
+
+1. The software shall serve only private, individual customers.
+1. The software shall serve one or more storage units for storing items from the customer, such as furniture or storage boxes.
+1. The storage units may be inside, outside, vehicle-accessible, climate controlled, etc.
+1. The storage 
+
 ## Best Practices
 
 ### Reuse

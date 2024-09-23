@@ -6,31 +6,37 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from db import SqliteDatabase
 
+
 class OrganizedStorageDatabase(SqliteDatabase):
-    def __init__(self, db_dir='~/.OrganizedStorageDatabase', db_filename='organized_storage.db'):
+    ORGANIZED_STORAGE_DB_DEFAULT_COLUMNS = {
+        "id": {
+            "primary": True,
+            "type": "INTEGER",
+        },
+        "name": {
+            "type": "TEXT",
+        },
+        "address": {
+            "type": "TEXT",
+        },
+        "hashed_password": {
+            "type": "TEXT",
+        },
+        "password_salt": {
+            "type": "TEXT",
+        },
+        "square_meters_used": {
+            "type": "REAL",
+        },
+    }
+
+    def __init__(self,
+                 db_dir='~/.OrganizedStorageDatabase',
+                 db_filename='organized_storage.db',
+                 organized_storage_table_columns=ORGANIZED_STORAGE_DB_DEFAULT_COLUMNS):
         super().__init__(db_dir,db_filename)
         self.user_table_name = "users"
-        self.organized_storage_table_columns = {
-            "id": {
-                "primary": True,
-                "type": "INTEGER",
-            },
-            "name": {
-                "type": "TEXT",
-            },
-            "address": {
-                "type": "TEXT",
-            },
-            "hashed_password": {
-                "type": "TEXT",
-            },
-            "password_salt": {
-                "type": "TEXT",
-            },
-            "square_meters_used": {
-                "type": "REAL",
-            },
-        }
+        self.organized_storage_table_columns = organized_storage_table_columns
         self.organized_storage_table_columns_as_sql = self.dict_to_sql_columns(self.organized_storage_table_columns)
         self.create_organized_storage_table()
     
