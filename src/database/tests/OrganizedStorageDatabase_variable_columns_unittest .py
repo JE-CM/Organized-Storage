@@ -9,9 +9,8 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 from OrganizedStorageDatabase import OrganizedStorageDatabase
 
 
-class TestOrganizedStorageDatabase(unittest.TestCase):
+class TestOrganizedStorageDatabaseVariableColumns(unittest.TestCase):
     def setUp(self):
-        self.test_db = OrganizedStorageDatabase('.','organized_storage_unittest.db')
         self.test_user = {
             "name": 'Alice',
             "address": '30 Giovanni Ln, Atlantis, 12345',
@@ -27,6 +26,10 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
 
     def test_setUp_and_tearDown(self):
         print("This test case doesn't test anything except the setUp and tearDown functions")
+
+    def test_creating_db_with_variable_columns(self):
+        self.test_db = OrganizedStorageDatabase('.','organized_storage_variable_columns_unittest.db',)
+        
 
     def test_add_user(self):
         add_result, id = self.test_db.add_user(self.test_user)
