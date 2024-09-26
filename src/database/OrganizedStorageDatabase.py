@@ -33,9 +33,10 @@ class OrganizedStorageDatabase(SqliteDatabase):
     def __init__(self,
                  db_dir='~/.OrganizedStorageDatabase',
                  db_filename='organized_storage.db',
-                 organized_storage_table_columns=ORGANIZED_STORAGE_DB_DEFAULT_COLUMNS):
+                 organized_storage_table_columns=ORGANIZED_STORAGE_DB_DEFAULT_COLUMNS,
+                 organized_storage_table_name="users"):
         super().__init__(db_dir,db_filename)
-        self.user_table_name = "users"
+        self.table_name = organized_storage_table_name
         self.organized_storage_table_columns = organized_storage_table_columns
         self.organized_storage_table_columns_as_sql = self.dict_to_sql_columns(self.organized_storage_table_columns)
         self.create_organized_storage_table()
@@ -53,7 +54,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         return out_sql_strings
 
     def create_organized_storage_table(self):
-        table_create_query = f"CREATE TABLE IF NOT EXISTS {self.user_table_name} ( {', '.join(self.organized_storage_table_columns_as_sql)} )"
+        table_create_query = f"CREATE TABLE IF NOT EXISTS {self.table_name} ( {', '.join(self.organized_storage_table_columns_as_sql)} )"
         return self.execute_query(table_create_query)
     
     def add_user(self, user_dict):
@@ -62,7 +63,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         assert(columns_without_id.keys() == user_dict.keys())
         user_dict_keys = [key for key in user_dict]
         user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict[key]) for key in user_dict]        
-        insert_query = f"INSERT INTO {self.user_table_name} ({', '.join(user_dict_keys)}) VALUES ({', '.join(user_dict_values_with_quotes_where_needed)})"
+        insert_query = f"INSERT INTO {self.table_name} ({', '.join(user_dict_keys)}) VALUES ({', '.join(user_dict_values_with_quotes_where_needed)})"
         query_results = self.execute_query(insert_query)
         query_rows_added = query_results['rowcount']
         row_of_user_add = query_results['lastrowid']
@@ -78,7 +79,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
             results = self.user_search(key_to_search, value_to_remove)
             assert(len(results) == 1)
             user_id = results[0][primary_key]
-        remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
+        remove_query = f"DELETE FROM {self.table_name} WHERE {primary_key} = {user_id};"
         query_results = self.execute_query(remove_query)
         num_rows_removed = query_results['rowcount']
         assert(not num_rows_removed > 1)
@@ -106,7 +107,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         user_dict_keys = [key for key in user_dict_to_update]
         user_dict_values_with_quotes_where_needed = [self.quote_value_if_needed(key, user_dict_to_update[key]) for key in user_dict_to_update]        
         zipped_keys_and_values = ', '.join([f"{key} = {value}" for key, value in zip(user_dict_keys, user_dict_values_with_quotes_where_needed)])
-        update_query = f"UPDATE {self.user_table_name} SET {zipped_keys_and_values} WHERE {self.get_primary_key()} = {user_id}"
+        update_query = f"UPDATE {self.table_name} SET {zipped_keys_and_values} WHERE {self.get_primary_key()} = {user_id}"
         query_results = self.execute_query(update_query)
         num_users_updated = query_results['rowcount']
         assert(not num_users_updated > 1)
@@ -127,7 +128,7 @@ class OrganizedStorageDatabase(SqliteDatabase):
         # if not matches_exactly:
         #     assert(user_data_key_type == "TEXT")
         #     user_data_value = f"%{user_data_value}%"
-        search_query = f"SELECT * FROM {self.user_table_name} WHERE {user_data_key} = {self.quote_value_if_needed(user_data_key, user_data_value)};"
+        search_query = f"SELECT * FROM {self.table_name} WHERE {user_data_key} = {self.quote_value_if_needed(user_data_key, user_data_value)};"
         search_results = self.execute_query(search_query)['fetchall']
         table_column_names = self.organized_storage_table_columns.keys()
         search_results_as_dicts = []
