@@ -70,20 +70,17 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
         self.assertEqual(len(results), 0)
 
     def test_update_user_not_exist(self):
-        _, id = self.test_db.add_user(self.test_user)
-        key_to_search = "name"
-        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
-        self.assertEqual(removed_user, True)
-        update_result = self.test_db.update_user_by_id(id, self.test_user_edited)
+        update_result = self.test_db.update_user_by_id(id, self.test_user)
         self.assertEqual(update_result, False)
-        key_to_search = "name"
-        results = self.test_db.user_search(key_to_search, self.test_user[key_to_search])
-        self.assertEqual(len(results), 0)
         key_to_search = "name"
         results = self.test_db.user_search(key_to_search, self.test_user_edited[key_to_search])
         self.assertEqual(len(results), 0)
 
     def test_remove_user_not_exist(self):
+        removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])
+        self.assertEqual(removed_user, False)
+
+    def test_double_remove_user(self):
         self.test_db.add_user(self.test_user)
         key_to_search = "name"
         removed_user = self.test_db.remove_user(key_to_search, self.test_user[key_to_search])

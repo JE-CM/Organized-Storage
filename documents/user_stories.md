@@ -12,7 +12,7 @@
 
 ### TASK a) Create a minimal API that can answer answer a dummy request
 
-ASSIGNEE: Esteban
+ASSIGNEE: Esteban (JE-CM)
 
 ### TASK b) Improve the API with the various operations required by the program
 
@@ -173,7 +173,7 @@ ASSIGNEE: matthew-silva
 
 - As a developer
 - I want to to have user stories defined which follow the design of "Phase 1" of the product design document provided by Geraldine (ggm.100423@gmail.com), the project UI/UX designer.
-- So that my development efforts are well-guided for creating a proper user experience that supports the product vision
+- So that my development efforts are well-guided for creating a proper user experience that supports the product vision.
 
 ASSIGNEE: matthew-silva
 

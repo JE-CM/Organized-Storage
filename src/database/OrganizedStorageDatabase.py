@@ -70,17 +70,16 @@ class OrganizedStorageDatabase(SqliteDatabase):
         if ("primary" in self.organized_storage_table_columns[key_to_search] and not self.organized_storage_table_columns[key_to_search]["primary"]) or \
                 "primary" not in self.organized_storage_table_columns[key_to_search]:
             results = self.user_search(key_to_search, value_to_remove)
-            #assert(len(results) == 0)
             if (len(results) == 0):
                 return False
             elif (len(results) == 1):
                 user_id = results[0][primary_key]
                 remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
             elif (len(results) > 1) and (delete_multiple_users == True):
-                #DELETE FROM users WHERE name = 'Alice';
+                # Example query:
+                # DELETE FROM users WHERE name = 'Alice';
                 remove_query = f"DELETE FROM {self.user_table_name} WHERE {key_to_search} = {value_to_remove};"
             else:
-                remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
                 return False
         
         query_results = self.execute_query(remove_query)
