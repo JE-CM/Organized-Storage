@@ -78,6 +78,33 @@ class TestSelfStoreUserDatabase(unittest.TestCase):
         self.assertEqual(len(results), 0)
         results = self.test_self_store_users_db.user_search(key_to_search, self.test_user_edited[key_to_search])
         self.assertEqual(len(results), 1)
+
+    def test_add_units_to_user(self):
+        _, id = self.test_self_store_users_db.add_user(self.test_self_store_user)
+        new_unit_list = [1,5,999]
+        add_unit_result = self.test_self_store_users_db.add_units_to_user(id, new_unit_list)
+        self.assertEqual(add_unit_result, True)
+        results = self.test_self_store_users_db.user_search(self.test_self_store_users_db.get_primary_key(), id)
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0][SelfStoreUserDatabase.SELF_STORE_UNIT_LIST_NAME], ",".join([str(n) for n in new_unit_list]))
+
+    def test_add_units_to_user_that_does_not_exist(self):
+        new_unit_list = [1,5,999]
+        add_unit_result = self.test_self_store_users_db.add_units_to_user(id, new_unit_list)
+        self.assertEqual(add_unit_result, False)
+        results = self.test_self_store_users_db.user_search(self.test_self_store_users_db.get_primary_key(), id)
+
+    def test_user_authorized_to_access_unit(self):
+        _, id = self.test_self_store_users_db.add_user(self.test_self_store_user)
+        new_unit_list = [1,5,999]
+        add_unit_result = self.test_self_store_users_db.add_units_to_user(id, new_unit_list)
+        self.assertEqual(add_unit_result, True)
+        authorized = self.test_self_store_users_db.user_authorized_to_access_unit(new_unit_list[1], id)
+        self.assertEqual(authorized, True)
+        authorized = self.test_self_store_users_db.user_authorized_to_access_unit(24, id)
+        self.assertEqual(authorized, False)
         
+    # def test_check_user_auth
+
 if __name__ == "__main__":
     unittest.main()

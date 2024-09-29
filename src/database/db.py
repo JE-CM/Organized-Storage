@@ -14,7 +14,7 @@ class SqliteDatabase():
         # Connect to a database (or create it if it doesn't exist)
         connection = sqlite3.connect(self.db_path)
         query_executed = False
-        query_result = None
+        query_results = None
         query_rowid = None
         try:
             # Create a cursor object
