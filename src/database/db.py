@@ -35,6 +35,7 @@ class SqliteDatabase():
             query_results['fetchone'] = cursor.fetchone()
         except:
             print(f"ERROR: Query was'{query}'")
+            raise Exception(f"ERROR: Query was'{query}'")
         finally:
             connection.close()
 

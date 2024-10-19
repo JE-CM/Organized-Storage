@@ -100,9 +100,9 @@ class TestSelfStoreUserDatabase(unittest.TestCase):
                 "price": "145",
             },
         ]
-        add_unit_result = self.test_self_store_users_db.add_units_to_user(id, new_unit_dict_list)
+        add_unit_result = self.test_self_store_users_db.add_units_to_user("1", new_unit_dict_list)
         self.assertEqual(add_unit_result, False)
-        results = self.test_self_store_users_db.user_search(self.test_self_store_users_db.get_primary_key(), id)
+        results = self.test_self_store_users_db.user_search(self.test_self_store_users_db.get_primary_key(), "1")
         self.assertEqual(len(results), 0)
 
     def test_add_units_to_user_that_already_has_them(self):
@@ -159,6 +159,29 @@ class TestSelfStoreUserDatabase(unittest.TestCase):
         self.assertEqual(authorized, True)
         authorized = self.test_self_store_users_db.user_authorized_to_access_unit(24, id)
         self.assertEqual(authorized, False)
+
+    def test_get_self_store_unit_dict_of_user(self):
+        _, id = self.test_self_store_users_db.add_user(self.test_self_store_user)
+        new_unit_dict_list = [
+            {
+                "id": "1",
+                "price": "300",
+            },
+            {
+                "id": "25",
+                "price": "100",
+            },
+            {
+                "id": "234",
+                "price": "145",
+            },
+        ]
+        add_unit_result = self.test_self_store_users_db.add_units_to_user(id, new_unit_dict_list)
+        self.assertEqual(add_unit_result, True)
+        unit_dict = self.test_self_store_users_db.get_self_store_unit_dict_of_user(id)
+        for new_unit_dict in new_unit_dict_list:
+            self.assertEqual(new_unit_dict['id'] in unit_dict, True)
+            self.assertEqual(new_unit_dict['price'], unit_dict[new_unit_dict['id']])
 
     # TODO:
     # def test_check_user_auth
