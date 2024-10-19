@@ -274,3 +274,12 @@ ASSIGNEE: JE-CM
 - As a developer
 - I want to have consistent and easy to use unit tests in the db.py file similar to what we already have for the OrganizedStorageDatabase_unittest.py
 - For increasing test coverage and consistency
+
+
+# USER STORY 29
+
+## Add functions in self_store_users.py to remove units from user
+
+- As a developer
+- I want to be able to remove units from a user to be able to provide that functionality to system administrators in the UI
+- For completeness of CRUD operations on user units

@@ -25,6 +25,9 @@ class TestOrganizedStorageDatabase(unittest.TestCase):
     def tearDown(self):
         self.test_db.delete_db()
 
+    def test_setUp_and_tearDown(self):
+        print("This test case doesn't test anything except the setUp and tearDown functions")
+
     def test_add_user(self):
         add_result, id = self.test_db.add_user(self.test_user)
         self.assertEqual(add_result, True)

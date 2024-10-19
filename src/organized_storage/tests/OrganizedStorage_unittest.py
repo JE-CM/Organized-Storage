@@ -16,15 +16,16 @@ class TestOrganizedStorage(unittest.TestCase):
                 self_store_units_db_filename='organized_storage_self_store_units_unittest.db',
                 communal_store_users_db_filename='organized_storage_communal_store_users_unittest.db',
                 communal_store_items_db_filename='organized_storage_communal_store_items_unittest.db')
-        self.test_user = {
-            "name": 'Alice',
-            "address": '30 Giovanni Ln, Atlantis, 12345',
-            "hashed_password": 'TODO_HASHED_PASSWORD',
-            "password_salt": 'TODO_PASSWORD_SALT',
-            "square_meters_used": 8.5,
+        self.test_self_store_user = {
+            "name": "Alice",
+            "address": "123 Good Rd, Greattown, Best Country",
+            "phone_number": "12345678910",
+            "email_address": "myemail@domain.that.does.not.exist.com",
+            "hashed_password": "TODO",
+            "password_salt": "TODO",
+            "storage_unit_list": "",
+            "storage_unit_prices": "",            
         }
-        self.test_user_edited = dict(self.test_user)
-        self.test_user_edited["name"] = "Bob"
 
     def tearDown(self):
         self.test_organized_storage.delete_all_dbs()
@@ -32,10 +33,20 @@ class TestOrganizedStorage(unittest.TestCase):
     def test_setUp_and_tearDown(self):
         print("This test case doesn't test anything except the setUp and tearDown functions")
 
-    # def test_add_user(self):
-    #     add_result, id = self.test_db.add_user(self.test_user)
-    #     self.assertEqual(add_result, True)
-    #     self.assertEqual(id, 1)
+    def test_self_store_add_user(self):
+        self.test_organized_storage.self_store_users_db.add_user(self.test_self_store_user)
+    
+    def test_self_store_remove_user(self):
+        self.test_organized_storage.self_store_users_db.add_user(self.test_self_store_user)
+        key_to_search = "name"
+        self.test_organized_storage.self_store_users_db.remove_user(key_to_search, self.test_self_store_user[key_to_search])
+        
+    def test_self_store_search_user(self):
+        self.test_organized_storage.self_store_users_db.add_user(self.test_self_store_user)
+        key_to_search = "name"
+        results = self.test_organized_storage.self_store_users_db.user_search(key_to_search, self.test_self_store_user[key_to_search])
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0][key_to_search], self.test_self_store_user[key_to_search])
 
     # def test_user_search(self):
     #     key_to_search = "name"
