@@ -213,10 +213,10 @@ ASSIGNEE: matthew-silva
 
 # USER STORY 24
 
-## Create OrganizedStorage class for central organization of all backend objects
+## Create OrganizedStorageSelfStorage class for central organization of all backend objects
 
 - As a front-end developer
-- I want a simplified OrganizedStorage object which will contain all of the objects necessary for the Organized Storage backend, such as all the databases. This object should have functions for common business operations like:
+- I want a simplified OrganizedStorageSelfStorge object which will contain all of the objects necessary for the Organized Storage backend's self storge modality, such as all the databases for self storage users and units. This object should have functions for common business operations like:
   - add user to self-storage
   - Add user to authorized list for self-storage unit
   - add self-storage unit
@@ -225,12 +225,6 @@ ASSIGNEE: matthew-silva
   - Show all authorized users on unit
   - Show all units which can be accessed by user
   - Show unit charactertics (size, temperature controlled, vehicular access)
-  - add user to communal-storage
-  - Add user to authorized list for communal-storage item
-  - Add communal-storage item
-  - Check for if user is authorized to pickup communal-storage item
-  - Show list of items owned by user
-  - Show video feed of communal area (TODO)
 - To simplify development and create a place for pure business logic
 
 ASSIGNEE: matthew-silva
@@ -283,3 +277,18 @@ ASSIGNEE: JE-CM
 - As a developer
 - I want to be able to remove units from a user to be able to provide that functionality to system administrators in the UI
 - For completeness of CRUD operations on user units
+
+# USER STORY 30
+
+## Create OrganizedStorageSelfStorage class for central organization of all backend objects
+
+- As a front-end developer
+- I want a simplified OrganizedStorageCommunalStorage object which will contain all of the objects necessary for the Organized Storage backend's communal storage modality, such as all the communal storage databases. This object should have functions for common business operations like:
+  - add user to communal-storage
+  - Add user to authorized list for communal-storage item
+  - Add communal-storage item
+  - Check for if user is authorized to pickup communal-storage item
+  - Show list of items owned by user
+  - Show video feed of communal area (TODO)
+- To simplify development and create a place for pure business logic
+
