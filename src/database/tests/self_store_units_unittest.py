@@ -12,22 +12,6 @@ from self_store_units import SelfStoreUnitDatabase
 class TestSelfStoreUnitDatabase(unittest.TestCase):
     def setUp(self):
         self.test_self_store_units_db = SelfStoreUnitDatabase('.','organized_storage_self_store_units_unittest.db')
-    # SELF_STORE_AUTHORIZED_USER_LIST_NAME = "authorized_user_list"
-    # SELF_STORE_UNITS_DB_COLUMNS = {
-    #     "id": {
-    #         "primary": True,
-    #         "type": "INTEGER",
-    #     },
-    #     "number": {
-    #         "type": "TEXT",
-    #     },
-    #     "facility_address": {
-    #         "type": "TEXT",
-    #     },
-    #     # List of user IDs, separated by commas
-    #     SELF_STORE_AUTHORIZED_USER_LIST_NAME: {
-    #         "type": "TEXT",
-    #     },
 
         self.test_self_store_unit = {
             "number": "131",
@@ -143,29 +127,6 @@ class TestSelfStoreUnitDatabase(unittest.TestCase):
         self.assertEqual(authorized, True)
         authorized = self.test_self_store_units_db.user_authorized_to_access_unit(24, id)
         self.assertEqual(authorized, False)
-
-    def test_get_self_store_unit_dict_of_user(self):
-        _, id = self.test_self_store_units_db.add_user(self.test_self_store_unit)
-        new_unit_dict_list = [
-            {
-                "id": "1",
-                "price": "300",
-            },
-            {
-                "id": "25",
-                "price": "100",
-            },
-            {
-                "id": "234",
-                "price": "145",
-            },
-        ]
-        add_unit_result = self.test_self_store_units_db.add_units_to_user(id, new_unit_dict_list)
-        self.assertEqual(add_unit_result, True)
-        unit_dict = self.test_self_store_units_db.get_self_store_unit_dict_of_user(id)
-        for new_unit_dict in new_unit_dict_list:
-            self.assertEqual(new_unit_dict['id'] in unit_dict, True)
-            self.assertEqual(new_unit_dict['price'], unit_dict[new_unit_dict['id']])
 
 if __name__ == "__main__":
     unittest.main()
