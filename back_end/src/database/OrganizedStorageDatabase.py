@@ -63,25 +63,16 @@ class OrganizedStorageDatabase(SqliteDatabase):
         user_added = True if query_rows_added == 1 else False
         return user_added, row_of_user_add 
 
-    def remove_user(self, key_to_search, value_to_remove, delete_multiple_users=False):
+    def remove_user(self, key_to_search, value_to_remove):
         assert(key_to_search in self.organized_storage_table_columns.keys())
         primary_key = self.get_primary_key()
         value_quoted_if_needed = self.quote_value_if_needed(key_to_search,value_to_remove)
         if ("primary" in self.organized_storage_table_columns[key_to_search] and not self.organized_storage_table_columns[key_to_search]["primary"]) or \
                 "primary" not in self.organized_storage_table_columns[key_to_search]:
             results = self.user_search(key_to_search, value_to_remove)
-            if (len(results) == 0):
-                return False
-            elif (len(results) == 1):
-                user_id = results[0][primary_key]
-                remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
-            elif (len(results) > 1) and (delete_multiple_users == True):
-                # Example query:
-                # DELETE FROM users WHERE name = 'Alice';
-                remove_query = f"DELETE FROM {self.user_table_name} WHERE {key_to_search} = {value_to_remove};"
-            else:
-                return False
-        
+            assert(len(results) == 1)
+            user_id = results[0][primary_key]
+        remove_query = f"DELETE FROM {self.user_table_name} WHERE {primary_key} = {user_id};"
         query_results = self.execute_query(remove_query)
         num_rows_removed = query_results['rowcount']
         assert(not num_rows_removed > 1)
