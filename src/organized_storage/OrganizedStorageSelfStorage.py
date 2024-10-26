@@ -31,8 +31,21 @@ class OrganizedStorage:
     def add_self_store_unit(self, unit_dict):
         return self.self_store_units_db.add_user(unit_dict)
 
-    def add_authorized_user_to_unit(self):
-        added_unit_to_user = self.self_store_users_db.add_authorized_user_to_unit()
+    def add_authorized_users_to_unit(self, unit_id, user_id_list):
+        for user_id in user_id_list:
+            added_unit_to_user = self.self_store_users_db.add_authorized_user_to_unit([unit_id], user_id)
+            if not added_unit_to_user:
+                return added_unit_to_user
+        added_user_to_unit = self.self_store_units_db.add_users_to_units(unit_id, user_id_list)
+        return added_user_to_unit
+
+    def add_units_to_user(self, unit_id_list, user_id):
+        for unit_id in unit_id_list:
+            added_user_to_unit = self.self_store_units_db.add_users_to_units(unit_id, [user_id])
+            if not added_user_to_unit:
+                return added_user_to_unit
+        added_user_to_unit = self.self_store_users_db.add_authorized_user_to_unit(unit_id_list, user_id)
+        return added_user_to_unit
 
     def remove_authorized_user_to_unit(self):
         # TODO

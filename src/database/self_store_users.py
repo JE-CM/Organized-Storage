@@ -49,8 +49,24 @@ class SelfStoreUserDatabase(OrganizedStorageDatabase):
         super().__init__(db_dir,self_store_users_db_filename, self.SELF_STORE_USERS_DB_COLUMNS)
 
 
-    # TODO:
-    # def remove_units_from_user():
+    def remove_units_from_user(self, user_id, units_to_remove):
+        units = self.get_self_store_unit_list_of_user(user_id)
+        unit_prices = self.get_self_store_unit_price_list_of_user(user_id)
+        cannot_remove_unit_list = []
+        for to_remove in units_to_remove:
+            if to_remove not in units:
+                cannot_remove_unit_list.append(to_remove)
+        if len(cannot_remove_unit_list) != 0:
+            raise Exception(f"Request to remove unit(s) {cannot_remove_unit_list} invalid. They do not exist in the unit list for user {user_id}") 
+        for unit in units_to_remove:
+            if unit in units:
+                index = units.index(unit)
+                units.pop(index)
+                unit_prices.pop(index)
+        units_to_update = dict()
+        units_to_update[self.SELF_STORE_UNIT_LIST_NAME] = ",".join([str(n) for n in units])
+        units_to_update[self.SELF_STORE_UNIT_PRICE_LIST_NAME] = ",".join([str(n) for n in unit_prices])
+        return self.update_user_by_id(user_id, units_to_update)
 
     def add_units_to_user(self, user_id, unit_dict_list):
         units_to_add = [unit['id'] for unit in unit_dict_list]
