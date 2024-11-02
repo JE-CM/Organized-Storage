@@ -4,69 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .about-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            max-width: 1000px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
-
-        .text-section {
-            max-width: 400px;
-        }
-
-        .text-section h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .text-section p {
-            font-size: 1em;
-            line-height: 1.5;
-            color: #333;
-        }
-
-        .image-placeholder {
-            width: 500px;
-            height: 400px;
-            background-color: #d3d3d3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-        }
-
-        .image-placeholder img {
-            width: 85%;
-            height: 85%;
-            border-radius: 16px;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="flex items-center justify-center h-screen m-0 bg-gray-100">
 
-    <div class="about-container">
-        <div class="text-section">
-            <h1>About Us</h1>
-            <p>[Facility Name] is your trusted partner for convenient and affordable self-storage solutions. We offer a variety of storage unit sizes to accommodate your needs, whether you're moving, downsizing, or simply need extra space.</p>
+    <div class="flex items-center gap-12 max-w-4xl p-5 bg-white shadow-lg rounded-lg">
+        <div class="max-w-xs">
+            <h1 class="text-2xl font-bold mb-5">About Us</h1>
+            <p class="text-base leading-relaxed text-gray-800">
+                [Facility Name] is your trusted partner for convenient and affordable self-storage solutions. We offer a variety of storage unit sizes to accommodate your needs, whether you're moving, downsizing, or simply need extra space.
+            </p>
         </div>
-        <div class="image-placeholder">
-            <img src="about_us.png" alt="Image placeholder">
+        <div class="w-96 h-80 bg-gray-300 flex justify-center items-center rounded-lg">
+            <img src="about_us.png" alt="Image placeholder" class="w-5/6 h-5/6 rounded-lg">
         </div>
     </div>
 
