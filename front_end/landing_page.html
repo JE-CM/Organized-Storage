@@ -229,5 +229,53 @@
         <button>Find Storage</button>
     </div>
 
+<!-- Footer Section -->
+<footer id="animated-footer" style="background-color: #e0e0e0; padding: 20px; margin-top: 20px; font-family: Arial, sans-serif; opacity: 0; transform: translateX(-100px); transition: opacity 0.8s ease, transform 0.8s ease;">
+    <div style="display: flex; justify-content: space-around; text-align: center;">
+        <!-- Storage Unit Section -->
+        <div>
+            <h3 style="margin: 0;">Storage Unit</h3>
+            <p style="margin: 5px 0;">Address</p>
+            <p style="margin: 5px 0;">Phone Number</p>
+            <p style="margin: 5px 0;">Service Hours</p>
+        </div>
+        
+        <!-- Company Section -->
+        <div>
+            <h3 style="margin: 0;">Company</h3>
+            <p style="margin: 5px 0;">About Us</p>
+            <p style="margin: 5px 0;">Terms of Use</p>
+            <p style="margin: 5px 0;">Careers</p>
+        </div>
+        
+        <!-- Partner With Us Section -->
+        <div>
+            <h3 style="margin: 0;">Partner With Us</h3>
+            <p style="margin: 5px 0;">Service Provider</p>
+            <p style="margin: 5px 0;">Moving Help</p>
+        </div>
+    </div>
+    
+    <!-- Social Media Icons Placeholder -->
+    <div style="text-align: center; margin-top: 10px;">
+        <p>Social Media Icons</p>
+    </div>
+</footer>
+
+<script>
+// JavaScript to trigger the animation when the footer enters the viewport
+document.addEventListener("scroll", function() {
+    const footer = document.getElementById("animated-footer");
+    const footerPosition = footer.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight;
+
+    if (footerPosition < screenPosition) {
+        footer.style.opacity = "1";
+        footer.style.transform = "translateX(0)";
+    }
+});
+</script>
+
+
 </body>
 </html>
