@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Unit Solution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('self_storage_facility.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow: auto; /* Allow scrolling */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(211, 211, 211, 0.8); /* Transparent background */
+            z-index: 1000; /* Ensure header stays on top */
+        }
+
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .container {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: rgba(211, 211, 211, 0.8); /* Transparent background */
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            position: relative;
+            animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+        }
+
+        .container h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out; /* Slide-in effect */
+        }
+
+        .container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth color transition */
+        }
+
+        .container button:hover {
+            background-color: rgba(255, 165, 0, 0.8); /* Change color on hover */
+        }
+
+        .search-section {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: rgba(224, 224, 224, 0.8); /* Transparent background */
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+        }
+
+        .search-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out; /* Slide-in effect */
+        }
+
+        .search-section input, .search-section button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1em;
+            transition: transform 0.3s ease; /* Smooth transform effect */
+        }
+
+        .search-section input[type="text"] {
+            width: 200px;
+        }
+
+        /* Motion graphics */
+        .shape {
+            position: absolute;
+            animation: fade 2s infinite ease-in-out, scroll 10s linear infinite; /* Add scrolling */
+        }
+
+        /* Shapes styles */
+        .square {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 69, 0, 1); /* Opaque orange color */
+        }
+        .triangle {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent; 
+            border-right: 10px solid transparent; 
+            border-bottom: 20px solid rgba(30, 144, 255, 1); /* Opaque blue */
+        }
+        .pentagon {
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent; 
+            border-right: 15px solid transparent; 
+            border-bottom: 25px solid rgba(50, 205, 50, 1); /* Opaque green */
+            position: relative;
+            margin-left: -15px;
+        }
+        .pentagon:before {
+            content: "";
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent; 
+            border-right: 15px solid transparent; 
+            border-bottom: 10px solid rgba(50, 205, 50, 1); /* Opaque green */
+            position: absolute; 
+            left: -15px; 
+            top: 25px;
+        }
+
+        /* Keyframes for fading in and out */
+        @keyframes fade {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Keyframes for scrolling effect */
+        @keyframes scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); } /* Move up the entire height of the viewport */
+        }
+
+        /* Keyframes for fade-in effect */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Keyframes for slide-in effect */
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Container for scrolling shapes */
+        .shape-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Prevent interaction with the shapes */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">storage</div>
+        <nav>
+            <a href="about_us.html">About us</a>
+            <a href="#">Services</a>
+            <a href="types_of_storage.html">Storage</a>
+            <a href="#">Cart</a>
+            <a href="#">Log in</a>
+        </nav>
+    </header>
+
+    <!-- Motion graphics container -->
+    <div class="shape-container">
+        <!-- Motion graphics elements -->
+        <!-- Generate 16 shapes -->
+        <div class="shape square" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
+        <div class="shape square" style="top: 15%; left: 15%; animation-delay: 0.1s;"></div>
+        <div class="shape square" style="top: 25%; left: 20%; animation-delay: 0.2s;"></div>
+        <div class="shape square" style="top: 35%; left: 30%; animation-delay: 0.3s;"></div>
+        <div class="shape square" style="top: 45%; left: 40%; animation-delay: 0.4s;"></div>
+        <div class="shape square" style="top: 55%; left: 50%; animation-delay: 0.5s;"></div>
+        <div class="shape square" style="top: 65%; left: 60%; animation-delay: 0.6s;"></div>
+        <div class="shape square" style="top: 75%; left: 70%; animation-delay: 0.7s;"></div>
+        <div class="shape square" style="top: 85%; left: 80%; animation-delay: 0.8s;"></div>
+        <div class="shape square" style="top: 95%; left: 90%; animation-delay: 0.9s;"></div>
+
+        <div class="shape triangle" style="top: 5%; left: 40%; animation-delay: 1s;"></div>
+        <div class="shape triangle" style="top: 15%; left: 60%; animation-delay: 1.1s;"></div>
+        <div class="shape triangle" style="top: 25%; left: 80%; animation-delay: 1.2s;"></div>
+        <div class="shape triangle" style="top: 35%; left: 20%; animation-delay: 1.3s;"></div>
+        <div class="shape triangle" style="top: 45%; left: 40%; animation-delay: 1.4s;"></div>
+        <div class="shape triangle" style="top: 55%; left: 60%; animation-delay: 1.5s;"></div>
+        
+        <div class="shape pentagon" style="top: 5%; left: 30%; animation-delay: 1.6s;"></div>
+        <div class="shape pentagon" style="top: 15%; left: 50%; animation-delay: 1.7s;"></div>
+        <div class="shape pentagon" style="top: 25%; left: 70%; animation-delay: 1.8s;"></div>
+        <div class="shape pentagon" style="top: 35%; left: 90%; animation-delay: 1.9s;"></div>
+        <div class="shape pentagon" style="top: 45%; left: 10%; animation-delay: 2s;"></div>
+        <div class="shape pentagon" style="top: 55%; left: 30%; animation-delay: 2.1s;"></div>
+    </div>
+
+    <div class="container">
+        <!-- Main content -->
+        <h1>The Best Storage Unit Solution</h1>
+        <button>Rent Storage</button>
+        <button>Offer Storage</button>
+    </div>
+
+    <div class="search-section">
+        <h2>Find the Nearest Storage Facility</h2>
+        <input type="text" placeholder="Location">
+        <input type="text" placeholder="Unit Size (Optional)">
+        <input type="text" placeholder="Type of Storage (Optional)">
+        <input type="text" placeholder="Date (Optional)">
+        <button>Find Storage</button>
+    </div>
+
+<!-- Footer Section -->
+<footer id="animated-footer" style="background-color: #e0e0e0; padding: 20px; margin-top: 20px; font-family: Arial, sans-serif; opacity: 0; transform: translateX(-100px); transition: opacity 0.8s ease, transform 0.8s ease;">
+    <div style="display: flex; justify-content: space-around; text-align: center;">
+        <!-- Storage Unit Section -->
+        <div>
+            <h3 style="margin: 0;">Storage Unit</h3>
+            <p style="margin: 5px 0;">Address</p>
+            <p style="margin: 5px 0;">Phone Number</p>
+            <p style="margin: 5px 0;">Service Hours</p>
+        </div>
+        
+        <!-- Company Section -->
+        <div>
+            <h3 style="margin: 0;">Company</h3>
+            <p style="margin: 5px 0;">About Us</p>
+            <p style="margin: 5px 0;">Terms of Use</p>
+            <p style="margin: 5px 0;">Careers</p>
+        </div>
+        
+        <!-- Partner With Us Section -->
+        <div>
+            <h3 style="margin: 0;">Partner With Us</h3>
+            <p style="margin: 5px 0;">Service Provider</p>
+            <p style="margin: 5px 0;">Moving Help</p>
+        </div>
+    </div>
+    
+    <!-- Social Media Icons Placeholder -->
+    <div style="text-align: center; margin-top: 10px;">
+        <p>Social Media Icons</p>
+    </div>
+</footer>
+
+<script>
+// JavaScript to trigger the animation when the footer enters the viewport
+document.addEventListener("scroll", function() {
+    const footer = document.getElementById("animated-footer");
+    const footerPosition = footer.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight;
+
+    if (footerPosition < screenPosition) {
+        footer.style.opacity = "1";
+        footer.style.transform = "translateX(0)";
+    }
+});
+</script>
+
+
+</body>
+</html>
