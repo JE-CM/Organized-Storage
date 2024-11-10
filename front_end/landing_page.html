@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-image: url('self_storage_facility.png');
+            background-image: url('green_background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -316,6 +316,151 @@
             }
         }
 
+        /* Styling for Payment Options Section */
+        .payment-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        /* Payment Options content container */
+        .payment-options-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left section for Payment Options text */
+        .payment-text-section {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-right: 40px;
+        }
+
+        /* Right section for Payment Options images */
+        .payment-image-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Styling for images in Payment Options */
+        .payment-image-section img {
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        /* Hover animation for images */
+        .payment-image-section img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* Bounce animation on images to draw attention */
+        .payment-image-section img {
+            animation: payment-bounce 1.2s ease infinite alternate;
+        }
+
+        @keyframes payment-bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* What Size Do I Need Section */
+        .size-guide-container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px auto; /* Add spacing between sections */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .size-guide-container:hover {
+            transform: scale(1.02);
+        }
+
+        .size-guide-image-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-guide-image-section img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .size-guide-text-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            background-color: #282c34;
+            color: #ffffff;
+        }
+
+        .size-guide-text-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            padding: 12px 24px;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            color: #282c34;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #21a1f1;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .size-guide-container {
+                flex-direction: column;
+            }
+
+            .size-guide-text-section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .size-guide-text-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -445,6 +590,34 @@
             window.location.href = page;
         }
     </script>
+
+    <div class="payment-container"></div>
+        <!-- Payment Options Section -->
+        <div class="payment-options-content">
+            <!-- Text Section -->
+            <div class="payment-text-section">
+                Payment Options
+            </div>
+            
+            <!-- Image Section -->
+            <div class="payment-image-section">
+                <img src="visa.jpg" alt="Visa">
+                <img src="mastercard.png" alt="Mastercard">
+                <img src="dollar_sign.png" alt="Dollar Sign">
+            </div>
+        </div>
+    </div>
+
+    <!-- What Size Do I Need Section -->
+    <div class="size-guide-container">
+        <div class="size-guide-image-section">
+            <img src="what_size_do_i_need.png" alt="Size Guide Image">
+        </div>
+        <div class="size-guide-text-section">
+            <h1>What Size Do I Need?</h1>
+            <button class="cta-button">Find Out</button>
+        </div>
+    </div>
 
 <!-- Footer Section -->
 <footer id="animated-footer" style="background-color: #e0e0e0; padding: 20px; margin-top: 20px; font-family: Arial, sans-serif; opacity: 0; transform: translateX(-100px); transition: opacity 0.8s ease, transform 0.8s ease;">
