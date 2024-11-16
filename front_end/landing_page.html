@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-image: url('self_storage_facility.png');
+            background-image: url('green_background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -168,16 +168,310 @@
             pointer-events: none; /* Prevent interaction with the shapes */
             overflow: hidden;
         }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Container for the carousel */
+        .container {
+            text-align: center;
+            width: 600px;
+            position: relative;
+
+            /* Add modern styles */
+            border-radius: 15px;          /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Soft shadow for depth */
+            padding: 20px;                /* Adds space around the content */
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Soft gradient background */
+            border: 1px solid #dee2e6;    /* Light border for definition */
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Carousel container styling */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+
+        /* Carousel image styling */
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+
+        }
+
+        /* Make only the active image visible */
+        .carousel img.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        /* Slide in from right */
+        .carousel img.slide-in-right {
+            animation: slideInFromRight 0.5s ease forwards;
+        }
+
+        /* Slide out to left */
+        .carousel img.slide-out-left {
+            animation: slideOutToLeft 0.5s ease forwards;
+        }
+
+        /* Slide in from left */
+        .carousel img.slide-in-left {
+            animation: slideInFromLeft 0.5s ease forwards;
+        }
+
+        /* Slide out to right */
+        .carousel img.slide-out-right {
+            animation: slideOutToRight 0.5s ease forwards;
+        }
+
+        /* Arrow styling */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        /* Left and right arrow positions */
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Caption styling */
+        .caption {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        /* Keyframes for animations */
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutToLeft {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutToRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Styling for Payment Options Section */
+        .payment-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        /* Payment Options content container */
+        .payment-options-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left section for Payment Options text */
+        .payment-text-section {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-right: 40px;
+        }
+
+        /* Right section for Payment Options images */
+        .payment-image-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Styling for images in Payment Options */
+        .payment-image-section img {
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        /* Hover animation for images */
+        .payment-image-section img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* Bounce animation on images to draw attention */
+        .payment-image-section img {
+            animation: payment-bounce 1.2s ease infinite alternate;
+        }
+
+        @keyframes payment-bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* What Size Do I Need Section */
+        .size-guide-container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px auto; /* Add spacing between sections */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .size-guide-container:hover {
+            transform: scale(1.02);
+        }
+
+        .size-guide-image-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-guide-image-section img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .size-guide-text-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            background-color: #282c34;
+            color: #ffffff;
+        }
+
+        .size-guide-text-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            padding: 12px 24px;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            color: #282c34;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #21a1f1;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .size-guide-container {
+                flex-direction: column;
+            }
+
+            .size-guide-text-section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .size-guide-text-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
     <header>
         <div class="logo">storage</div>
         <nav>
-            <a href="about_us.html">About us</a>
+            <a href="#about">About us</a>
             <a href="#">Services</a>
-            <a href="types_of_storage.html">Storage</a>
+            <a href="#types_of_storage">Storage</a>
             <a href="#">Cart</a>
             <a href="#">Log in</a>
         </nav>
@@ -224,9 +518,105 @@
         <h2>Find the Nearest Storage Facility</h2>
         <input type="text" placeholder="Location">
         <input type="text" placeholder="Unit Size (Optional)">
-        <input type="text" placeholder="Type of Storage (Optional)">
+        <input type="text" placeholder="Type (Optional)">
         <input type="text" placeholder="Date (Optional)">
         <button>Find Storage</button>
+    </div>
+
+    <div id="about" class="flex items-center gap-12 max-w-4xl p-5 bg-white shadow-lg rounded-lg mx-auto">
+        <div class="max-w-xs">
+            <h1 class="text-2xl font-bold mb-5">About Us</h1>
+            <p class="text-base leading-relaxed text-gray-800">
+                [Facility Name] is your trusted partner for convenient and affordable self-storage solutions. We offer a variety of storage unit sizes to accommodate your needs, whether you're moving, downsizing, or simply need extra space.
+            </p>
+        </div>
+        <div class="w-96 h-80 bg-gray-300 flex justify-center items-center rounded-lg">
+            <img src="about_us.png" alt="Image placeholder" class="w-5/6 h-5/6 rounded-lg">
+        </div>
+    </div>
+
+    <div id="types_of_storage" class="container">
+        <div class="title">Types of Storage</div>
+        <div class="carousel">
+            <span class="arrow left" onclick="prevImage()">&#9664;</span>
+            <img src="small_storage.png" alt="Small Storage" class="active" onclick="goToPage('small_storage.html')" data-caption="Small Storage">
+            <img src="medium_storage.png" alt="Medium Storage" onclick="goToPage('medium_storage.html')" data-caption="Medium Storage">
+            <img src="large_storage.png" alt="Large Storage" onclick="goToPage('large_storage.html')" data-caption="Large Storage">
+            <span class="arrow right" onclick="nextImage()">&#9654;</span>
+        </div>
+        <div class="caption">Small Storage</div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        const caption = document.querySelector('.caption');
+
+        function updateCarousel(newIndex, direction) {
+            const currentImage = images[currentImageIndex];
+            const newImage = images[newIndex];
+
+            // Remove active class and add the slide-out animation to the current image
+            currentImage.classList.remove('active');
+            currentImage.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+
+            // Add slide-in animation to the new image and mark it as active
+            newImage.classList.add('active', direction === 'next' ? 'slide-in-right' : 'slide-in-left');
+
+            // Update the caption
+            caption.textContent = newImage.getAttribute('data-caption');
+
+            // Wait for animation to finish, then clean up classes
+            setTimeout(() => {
+                currentImage.classList.remove('slide-out-left', 'slide-out-right');
+                newImage.classList.remove('slide-in-right', 'slide-in-left');
+            }, 500);
+
+            // Update current index
+            currentImageIndex = newIndex;
+        }
+
+        function nextImage() {
+            const newIndex = (currentImageIndex + 1) % images.length;
+            updateCarousel(newIndex, 'next');
+        }
+
+        function prevImage() {
+            const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateCarousel(newIndex, 'prev');
+        }
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+    <div class="payment-container"></div>
+        <!-- Payment Options Section -->
+        <div class="payment-options-content">
+            <!-- Text Section -->
+            <div class="payment-text-section">
+                Payment Options
+            </div>
+            
+            <!-- Image Section -->
+            <div class="payment-image-section">
+                <img src="visa.jpg" alt="Visa">
+                <img src="mastercard.png" alt="Mastercard">
+                <img src="dollar_sign.png" alt="Dollar Sign">
+            </div>
+        </div>
+    </div>
+
+    <!-- What Size Do I Need Section -->
+    <div class="size-guide-container">
+        <div class="size-guide-image-section">
+            <img src="what_size_do_i_need.png" alt="Size Guide Image">
+        </div>
+        <div class="size-guide-text-section">
+            <h1>What Size Do I Need?</h1>
+            <button class="cta-button">Find Out</button>
+        </div>
     </div>
 
 <!-- Footer Section -->
