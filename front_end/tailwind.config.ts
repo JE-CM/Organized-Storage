@@ -2,12 +2,9 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
- 
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -28,6 +25,13 @@ const config: Config = {
           transform: 'translateX(100%)',
         },
       },
+      fadeInSlideIn: {
+        '0%': { opacity: '0', transform: 'translateX(-50px)' },
+        '100%': { opacity: '1', transform: 'translateX(0)' },
+      },
+    },
+    animation: {
+      fadeInSlideIn: 'fadeInSlideIn 0.8s ease-out forwards',
     },
   },
   plugins: [require('@tailwindcss/forms')],
