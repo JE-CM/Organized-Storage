@@ -197,6 +197,8 @@
             position: relative;
             width: 100%;
             height: 500px;
+            border-radius: 15px; /* Rounds the image content itself */
+            border: 5px solid white; /* Adds a white border */
             background-color: #d3d3d3;
             display: flex;
             justify-content: center;
@@ -207,13 +209,25 @@
 
         /* Carousel image styling */
         .carousel img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            width: auto; /* Maintain the intrinsic width of the image */
+            height: auto; /* Maintain the intrinsic height of the image */
+            max-width: 100%; /* Prevent the image from exceeding its container */
+            max-height: 100%; /* Prevent the image from exceeding its container */
             position: absolute;
             opacity: 0;
             transition: opacity 0.5s ease;
 
+            /* Round the actual image corners */
+            border-radius: 15px; /* Rounds the image content itself */
+            border: 5px solid white; /* Adds a white border */
+            background-color: white; /* Ensures a white background is visible behind the image */
+            overflow: hidden; /* Ensures only the rounded content is visible */
+        }
+
+        /* Make only the active image visible */
+        .carousel img.active {
+            opacity: 1;
+            position: relative;
         }
 
         /* Make only the active image visible */
@@ -523,15 +537,15 @@
         <button>Find Storage</button>
     </div>
 
-    <div id="about" class="flex items-center gap-12 max-w-4xl p-5 bg-white shadow-lg rounded-lg mx-auto">
-        <div class="max-w-xs">
+    <div id="about" class="flex flex-col md:flex-row items-center gap-12 max-w-4xl p-5 bg-white shadow-lg rounded-lg mx-auto">
+        <div class="max-w-xs text-center md:text-left">
             <h1 class="text-2xl font-bold mb-5">About Us</h1>
             <p class="text-base leading-relaxed text-gray-800">
                 [Facility Name] is your trusted partner for convenient and affordable self-storage solutions. We offer a variety of storage unit sizes to accommodate your needs, whether you're moving, downsizing, or simply need extra space.
             </p>
         </div>
-        <div class="w-96 h-80 bg-gray-300 flex justify-center items-center rounded-lg">
-            <img src="about_us.png" alt="Image placeholder" class="w-5/6 h-5/6 rounded-lg">
+        <div class="flex justify-center items-center w-[450px] h-[450px] bg-gray-300 rounded-lg">
+            <img src="about_us.png" alt="Image placeholder" class="w-[90%] h-[90%] rounded-lg object-cover">
         </div>
     </div>
 
