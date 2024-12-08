@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Footer: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -8,6 +8,32 @@ const Footer: React.FC = () => {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const content = contentRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fadeInSlideIn');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (content) {
+      observer.observe(content);
+    }
+
+    return () => {
+      if (content) observer.unobserve(content);
+    };
+  }, []);
+
 
   return (
     <footer className="bg-gray-100 p-5 text-center">
@@ -27,6 +53,7 @@ const Footer: React.FC = () => {
         )}
       </div>
 
+    <div ref={contentRef} className="opacity-0">
       {/* Informational Links */}
       <div className="mt-4 text-sm text-gray-700">
         <div className="flex justify-center flex-wrap gap-4 p-4 bg-gray-200">
@@ -54,6 +81,7 @@ const Footer: React.FC = () => {
         <img src="/assets/media/icons/logo.png" alt="Logo Ind" className="h-12" />
         <img src="/assets/media/icons/logo.png" alt="Logo Price" className="h-12" />
       </div>
+    </div>
     </footer>
   );
 };
