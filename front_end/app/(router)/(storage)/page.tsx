@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-const Footer: React.FC = () => {
+const PageBody: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -66,65 +66,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-gray-100 p-5 text-center">
-{/* Logo */}
-
-      {/* Location */}
-      <button className="p-4 bg-blue-500 text-white rounded-r transition-all cursor-pointer">
-        location
-      </button>
-
-      {/* Search Bar */}
-      <div className="flex-grow p-4 rounded-none focus:outline-none justify-center 
-      gap-2 relative hidden md:flex items-center">
-
-        <button
-          onClick={toggleExpand}
-          className="px-2 py-2 bg-gray-700 rounded hover:bg-gray-600"
-        >
-          All {isExpanded ? '△' : '▽'}
-        </button>
-
-        <input
-          type="text"
-          placeholder="Search here"
-          className="py-0 w-3/5 p-2 text-lg rounded-l border-1 border-gray-300
-          focus:bg-slate-100 focus:outline-sky-50"
-
-        />
-        <button className="p-1 px-2 py-2 bg-blue-500 text-white rounded-r">
-          🔍
-        </button>
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-2 flex justify-end space-x-4">
-        <a href="/" className="text-white hover:bg-gray-600 px-3 py-2 rounded">
-          Home
-        </a>
-        <a href="/services" className="text-white hover:bg-gray-600 px-3 py-2 rounded">
-          Services
-        </a>
-        <a href="/portfolio" className="text-white hover:bg-gray-600 px-3 py-2 rounded">
-          Portfolio
-        </a>
-        <a href="/about" className="text-white hover:bg-gray-600 px-3 py-2 rounded">
-          About Us
-        </a>
-
-        {/* Dark Mode Toggle */}
-        <div className="relative">
-          <button
-            onClick={toggleExpand}
-            className="px-3 py-2 bg-gray-700 rounded hover:bg-gray-600"
-          >
-            {isExpanded ? '🌙' : '☀'}
-          </button>
-
-        </div>
-
-        </nav>
-        
+    <div>     
       <div className="flex justify-center items-center p-5 bg-gray-300/80 z-1000">
       <div className="text-xl font-bold">storage
       <nav className="flex space-x-6">
@@ -310,74 +252,8 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </div>
-
-      {/* Navbar for expanding/collapsing additional information */}
-      <div className="mt-8 mb-4">
-        <button
-          onClick={toggleExpand}
-          className="bg-transparent border-none text-blue-500 cursor-pointer text-lg"
-        >
-          {isExpanded ? '- Information ▼' : '+ Information ▲'}
-        </button>
-
-        {isExpanded && (
-          <nav className="mt-2 flex justify-center flex-wrap gap-4 text-sm">
-            {/* Additional expandable links can go here */}
-          </nav>
-        )}
-      </div>
-
-      <div ref={contentRef} className="opacity-0">
-      {/* Informational Links */}
-      <div className="mt-4 text-sm text-gray-700">
-        <div className="flex justify-center flex-wrap gap-4 p-4 bg-gray-200">
-          <a href="/work_with_Us" className="hover:underline">
-            Work with Us
-          </a>
-          <a href="/terms_Conditions" className="hover:underline">
-            Terms and Conditions
-          </a>
-          <a href="/promotions" className="hover:underline">
-            Promotions
-          </a>
-          <a href="/privacy" className="hover:underline">
-            About your privacy
-          </a>
-          <a href="/accessibility" className="hover:underline">
-            Accessibility
-          </a>
-          <a href="/help" className="hover:underline">
-            Help, issues, claims, complaints
-          </a>
-          <a href="/discount" className="hover:underline">
-            Discount
-          </a>
-          <a href="/hot_sale" className="hover:underline">
-            Hot Sale
-          </a>
-          <a href="http://www.sic.gov.co" className="hover:underline">
-            www.sic.gov.co
-          </a>
-        </div>
-        <p className="mt-4">&copy; 2024-20XX, Storage.com, Inc. or its affiliates</p>
-        <p>Address: close location</p>
-      </div>
-      {/* Logos */}
-      <div className="mt-6 flex justify-center gap-6">
-        <img
-          src="/assets/media/icons/logo.png"
-          alt="Logo Ind"
-          className="h-12"
-        />
-        <img
-          src="/assets/media/icons/logo.png"
-          alt="Logo Price"
-          className="h-12"
-        />
-      </div>
-    </div>
-  </footer>
+  </div>
   );
 };
 
-export default Footer;
+export default PageBody;

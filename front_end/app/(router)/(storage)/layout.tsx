@@ -3,7 +3,7 @@ import '@/app/ui/global.css';
 import Footer from '@/app/lib/footer/footer.tsx';
 import Header from '@/app/lib/header/header.tsx';
 
-export default function LoginLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
