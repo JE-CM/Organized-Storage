@@ -1,7 +1,7 @@
-"use client"
+import '@/app/ui/global.css';
 
-import Footer from '@/app/ui_ux/components/footer/footer';
-import Header from '@/app/ui_ux/components/header/header';
+import Footer from '@/app/lib/footer/footer.tsx';
+import Header from '@/app/lib/header/header.tsx';
 
 export default function LoginLayout({
   children,
@@ -9,8 +9,12 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      {children}
-    </>
+    <html lang="en">
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
 }
